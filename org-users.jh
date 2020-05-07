@@ -1,0 +1,43 @@
+entity Organizations {
+	id String,
+	name String required,
+    description String,
+    address Location,
+    
+}
+
+entity Users {
+	id String,
+	username String required,
+    firstname String required,
+    lastname String required,
+    email String required,
+    address Location,
+    organizationId String
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Location {
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String
+}
+
+relationship ManyToOne {
+	Users{organizationId} to Organizations
+}
+
+// Set pagination options
+paginate Organizations, Users with infinite-scroll
+
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
